@@ -72,6 +72,9 @@
                 $exceptionHandler: function () {
                     this.$get = ['$log', 'bugsnag', function ($log, bugsnag) {
                         return function (exception, cause) {
+                            if(bugsnag.autoNotify) {
+                                return; 
+                            }
                             $log.error.apply($log, arguments);
                             bugsnag.fixContext();
                             if (angular.isString(exception)) {
