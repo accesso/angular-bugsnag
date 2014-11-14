@@ -67,7 +67,7 @@
                 $exceptionHandler: function () {
                     this.$get = ['$log', 'bugsnag', function ($log, bugsnag) {
                         return function (exception, cause) {
-                            if(bugsnag.autoNotify) {
+                            if(!bugsnag.autoNotify) {
                                 return;	
                             }
                             $log.error.apply($log, arguments);
